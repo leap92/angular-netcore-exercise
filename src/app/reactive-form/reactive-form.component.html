@@ -1,0 +1,32 @@
+<form [formGroup]=reactiveForm (submit)="submit()">
+  <mat-form-field>
+    <mat-label>Number of Power units:</mat-label>
+    <input matInput type="text" formControlName="powerUnits" required/>
+    <mat-error *ngIf="reactiveForm.controls.powerUnits.touched && reactiveForm.controls.powerUnits.invalid">
+      <span *ngIf="reactiveForm.controls.powerUnits.errors?.required">This field is mandatory.</span>
+      <span *ngIf="reactiveForm.controls.powerUnits.errors?.pattern">This field must be a number.</span>
+    </mat-error>
+  </mat-form-field> 
+  <mat-form-field>
+    <mat-label>Proposed Effective Date:</mat-label>
+    <input matInput [matDatepicker]="effectiveDatePicker" formControlName="proposedEffectiveDate" required />
+    <mat-datepicker-toggle matSuffix [for]="effectiveDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #effectiveDatePicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> Proposed Expiration Date: </mat-label>
+    <input matInput [matDatepicker]="expirationDatePicker" formControlName="proposedExpirationDate" required />
+    <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #expirationDatePicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Business Name:</mat-label>
+    <input matInput type="text" formControlName="businessName" maxlength="50" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Business Description:</mat-label>
+    <input matInput type="text" formControlName="businessDescription" maxLength="50" />
+  </mat-form-field>
+  <p> Value: {{reactiveForm.value | json}} </p>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>
