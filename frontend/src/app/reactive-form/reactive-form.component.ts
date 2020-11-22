@@ -10,9 +10,9 @@ import * as moment from 'moment';
 export class ReactiveFormComponent implements OnInit {
 
   reactiveForm = this.formBuilder.group({
-    powerUnits: [0 , [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
+    powerUnits: [0, [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     proposedEffectiveDate: [moment(), Validators.required],
-    proposedExpirationDate: [moment(), Validators.required],
+    proposedExpirationDate: [moment().add(1, 'y'), Validators.required],
     businessName: ['', [Validators.required, Validators.maxLength(50)]],
     businessDescription: ['', Validators.maxLength(50)]
   })
@@ -20,7 +20,7 @@ export class ReactiveFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.reactiveForm.get('powerUnits')?.valueChanges.subscribe(changes => {console.log(changes)});
+    this.reactiveForm.get('powerUnits')?.valueChanges.subscribe(changes => { console.log(changes) });
   }
 
   submit() {
