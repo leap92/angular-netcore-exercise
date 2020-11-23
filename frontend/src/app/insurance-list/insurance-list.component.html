@@ -1,0 +1,25 @@
+<table mat-table [dataSource]="insurances$" class="insurance-table mat-elevation-z8">
+    <ng-container matColumnDef="powerUnits">
+        <th mat-header-cell *matHeaderCellDef> Power units </th>
+        <td mat-cell *matCellDef="let element"> {{element.powerUnits}} </td>
+    </ng-container>
+    <ng-container matColumnDef="proposedEffectiveDate">
+        <th mat-header-cell *matHeaderCellDef> Effective Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.proposedEffectiveDate | date:'shortDate'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="proposedExpirationDate">
+        <th mat-header-cell *matHeaderCellDef> Expiration Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.proposedExpirationDate | date:'shortDate'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="businessName">
+        <th mat-header-cell *matHeaderCellDef> Business Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.businessName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="businessDescription">
+        <th mat-header-cell *matHeaderCellDef> Business Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.businessDescription}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
